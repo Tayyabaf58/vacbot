@@ -48,3 +48,57 @@ vacbot/
 │   └── view_robot.rviz
 ├── CMakeLists.txt
 └── package.xml
+
+
+🚀 Build & Execution
+1. Clone & Build
+Bash
+mkdir -p ~/vacbot_ws/src
+cd ~/vacbot_ws/src
+git clone [https://github.com/Tayyabaf58/vacbot.git](https://github.com/Tayyabaf58/vacbot.git) my_robot_sim
+
+cd ~/vacbot_ws
+colcon build --symlink-install
+source install/setup.bash
+2. Launch Simulation & SLAM
+In Terminal 1 (Gazebo simulation):
+
+Bash
+ros2 launch my_robot_sim sim.launch.py
+In Terminal 2 (SLAM Toolbox & RViz):
+
+Bash
+ros2 launch my_robot_sim slam.launch.py
+(Note: Adjust launch file names above if your local files use different names, e.g., launch_sim.launch.py)
+
+🗺 Transform (TF) Hierarchy
+Plaintext
+[map]
+  └── [odom]
+        └── [base_footprint]
+              └── [base_link]
+                    ├── [left_wheel]
+                    ├── [right_wheel]
+                    ├── [caster_wheel]
+                    └── [laser_frame]
+🛣 Roadmap
+[x] Custom differential-drive URDF/Xacro model
+
+[x] Gazebo physical properties and surface contact parameter tuning
+
+[x] 2D LiDAR ray tracing and odometry integration
+
+[x] Asynchronous real-time mapping via SLAM Toolbox
+
+[ ] Part 2: Nav2 costmap configuration (global/local inflation)
+
+[ ] Part 2: Complete coverage path planning (Boustrophedon sweep patterns)
+
+👩‍💻 Author
+Tayyaba Fatima
+
+Robotics & Intelligent Systems Engineer
+
+LinkedIn: linkedin.com/in/tayyaba-fatima-robotics-ros2
+
+GitHub: @Tayyabaf58
